@@ -1,6 +1,6 @@
 module.exports = {
     app: {
-        name: 'HiApp'
+        name: 'Jellyfish'
     },
     global: {
         cancel: 'Cancel',

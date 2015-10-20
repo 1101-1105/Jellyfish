@@ -1,15 +1,15 @@
-HiApp
+Jellyfish
 =====
 
 A simple and interesting Framework7 hybrid app.With PhoneGap you can easily convert it to native iOS app.
 
 ## Build Tools
 
-HiApp use different build tools to build the same project, Hope it will helps you select a suitable build tool.
+Jellyfish use different build tools to build the same project, Hope it will helps you select a suitable build tool.
 
 * `gulp & webpack` at origin/master
-* `fis3 & mod.js` at [origin/fis3](https://github.com/BelinChung/HiApp/tree/fis3)
-* `[DEPRECATED] grunt & requireJS` at [origin/grunt](https://github.com/BelinChung/HiApp/tree/grunt)
+* `fis3 & mod.js` at [origin/fis3](https://github.com/BelinChung/Jellyfish/tree/fis3)
+* `[DEPRECATED] grunt & requireJS` at [origin/grunt](https://github.com/BelinChung/Jellyfish/tree/grunt)
 
 ## Requirements
 
@@ -20,11 +20,11 @@ HiApp use different build tools to build the same project, Hope it will helps yo
 
 ## Dependencies
 
-HiApp use `gulp` and `webpack` to build a production versions,
+Jellyfish use `gulp` and `webpack` to build a production versions,
 
 First you need to have `gulp` and `webpack` which you should install globally.
 
-HiApp also use `bower` to manage third-party packages, global install it as same as `gulp` and `webpack`.
+Jellyfish also use `bower` to manage third-party packages, global install it as same as `gulp` and `webpack`.
 
 ```
 $ npm install -g gulp
@@ -52,17 +52,17 @@ $ npm install -g cordova
 Go to the directory where you maintain your source code, and run a command such as the following:
 
 ```
-$ cordova create hiapp com.hiapp.hiapp HiApp
+$ cordova create Jellyfish com.Jellyfish.Jellyfish Jellyfish
 ```
 
 ### Check out source code
 
-Because the PhoneGap app directory should not already exist, so check out the HiApp source code in this step.
+Because the PhoneGap app directory should not already exist, so check out the Jellyfish source code in this step.
 
 ```
-$ cd hiapp  
+$ cd Jellyfish  
 $ git init   
-$ git remote add origin git@github.com:BelinChung/HiApp.git  
+$ git remote add origin git@github.com:BelinChung/Jellyfish.git  
 $ git pull origin master  
 $ git reset --hard origin/master  
 ```
@@ -93,13 +93,13 @@ $ cordova build ios
 
 ### Test the App on an iOS Device with Xcode
 
-Double-click to open the `platforms/ios/HiApp.xcodeproj` file
+Double-click to open the `platforms/ios/Jellyfish.xcodeproj` file
 
 Press the `Run` button to deploy the application in the emulator
 
 ## Web App Preview
 
-HiApp use webpack dev server to develop, Just run it in repo's root:
+Jellyfish use webpack dev server to develop, Just run it in repo's root:
 
 ```
 $ gulp build-dev
@@ -126,4 +126,4 @@ The result is available in `www/` folder.
 Copyright (c) 2014-2015 Belin Chung. MIT Licensed, see [LICENSE] for details.
 
 [http://hi.dearb.me/]: http://hi.dearb.me/
-[LICENSE]:https://github.com/BelinChung/HiApp/blob/master/LICENSE.md
+[LICENSE]:https://github.com/BelinChung/Jellyfish/blob/master/LICENSE.md

@@ -70,7 +70,7 @@ var app = {
         });
 
         window.$$ = Dom7;
-        window.hiApp = new Framework7({
+        window.Jellyfish = new Framework7({
             pushState: false,
             popupCloseByOutside:false,
             animateNavBackIcon: true,
@@ -106,15 +106,15 @@ var app = {
             }
         });
 
-        window.homeF7View = hiApp.addView('#homeView', {
+        window.homeF7View = Jellyfish.addView('#homeView', {
             dynamicNavbar: true
         });
 
-        hiApp.addView('#contactView', {
+        Jellyfish.addView('#contactView', {
             dynamicNavbar: true
         });
 
-        hiApp.addView('#settingView', {
+        Jellyfish.addView('#settingView', {
             dynamicNavbar: true
         });
 

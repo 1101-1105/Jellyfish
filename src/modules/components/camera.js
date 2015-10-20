@@ -6,7 +6,7 @@ var camera = {
     getPicture: function(){
 
         if(!appFunc.isPhonegap()){
-            hiApp.alert(i18n.error.phonegap_only);
+            Jellyfish.alert(i18n.error.phonegap_only);
             return false;
         }
 
@@ -49,7 +49,7 @@ var camera = {
     cameraError: function(message){
         setTimeout(function(){
             if(message !== 'no image selected'){
-                hiApp.alert(message);
+                Jellyfish.alert(message);
             }
         },500);
     },

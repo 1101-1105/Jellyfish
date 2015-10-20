@@ -10,23 +10,23 @@ var settingView = {
     renderSetting: function(){
         if($$('#settingView .page-content')[0]) return;
 
-        hiApp.showIndicator();
+        Jellyfish.showIndicator();
 
         var renderData = {
-            avatarUrl: 'https://d13yacurqjgara.cloudfront.net/users/216043/screenshots/2027675/jellyfish_logo.jpg',
-            nickName: 'Jellyfish',
-            points: '200'
+            avatarUrl: "http://i13.tietuku.com/2363054492b63eac.jpg",
+            nickName: 'Jelly',
+            points: '100'
         };
 
         var output = appFunc.renderTpl(template, renderData);
         $$('#settingView .page[data-page="setting"]').html(output);
 
-        hiApp.hideIndicator();
+        Jellyfish.hideIndicator();
     },
     logOut: function(){
-        hiApp.confirm(i18n.setting.confirm_logout,function(){
+        Jellyfish.confirm(i18n.setting.confirm_logout,function(){
             //mainView.router.loadPage('page/login.html');
-            //hiApp.showTab('#ourView');
+            //Jellyfish.showTab('#ourView');
         });
     },
     bindEvents: function(){

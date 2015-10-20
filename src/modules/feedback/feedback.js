@@ -7,10 +7,10 @@ module.exports = {
         this.bindEvents();
     },
     sendFeedback: function(){
-        hiApp.showPreloader(i18n.index.sending);
+        Jellyfish.showPreloader(i18n.index.sending);
         setTimeout(function(){
-            hiApp.hidePreloader();
-            hiApp.alert(i18n.setting.feed_back_result);
+            Jellyfish.hidePreloader();
+            Jellyfish.alert(i18n.setting.feed_back_result);
         },1000);
     },
     bindEvents: function(){

@@ -10,7 +10,7 @@ var contacts = {
     },
     loadContacts: function(){
         if(contacts.beforeLoadContacts()) {
-            hiApp.searchbar('#contactView .searchbar',{
+            Jellyfish.searchbar('#contactView .searchbar',{
                 searchList: '.contacts-list',
                 searchIn: '.item-title'
             });
@@ -23,7 +23,7 @@ var contacts = {
                     var output = appFunc.renderTpl(template, renderData);
                     $$('#contactView .contacts-list ul').html(output);
 
-                    hiApp.hideIndicator();
+                    Jellyfish.hideIndicator();
 
                 },500);
             });
@@ -33,7 +33,7 @@ var contacts = {
         if($$('#contactView .contacts-list .list-group .contact-item').length > 0) {
             return false;
         }else {
-            hiApp.showIndicator();
+            Jellyfish.showIndicator();
             return true;
         }
     },

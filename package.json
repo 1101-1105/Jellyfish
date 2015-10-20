@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:BelinChung/HiApp.git"
+    "url": "git@github.com:BelinChung/Jellyfish.git"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",

@@ -7,7 +7,7 @@ var fileTransfer = {
 
         //Upload progress
         var text = '<div id="progress" class="progress"><span class="progress-bar"></span></div>';
-        hiApp.modal({
+        Jellyfish.modal({
             title: i18n.camera.image_uploading + ' <span class="percent"></span>',
             text: text,
             buttons: [{
@@ -29,17 +29,17 @@ var fileTransfer = {
     },
 
     uploadSuccess: function (r) {
-        hiApp.closeModal('.modal');
+        Jellyfish.closeModal('.modal');
 
         navigator.camera.cleanup();
 
         var response = r.response ? JSON.parse(r.response) : '';
 
-        hiApp.alert(response);
+        Jellyfish.alert(response);
     },
 
     uploadFail: function (error) {
-        hiApp.closeModal('.modal');
+        Jellyfish.closeModal('.modal');
 
         /* global FileTransferError */
         var errText;
@@ -61,7 +61,7 @@ var fileTransfer = {
                 break;
         }
 
-        hiApp.alert(errText);
+        Jellyfish.alert(errText);
     },
 
     onprogress: function(progressEvent){

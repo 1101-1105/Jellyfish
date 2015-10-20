@@ -20,12 +20,11 @@
 /******/
 /******/ 	};
 /******/ 	var parentHotUpdateCallback = this["webpackHotUpdate"];
-/******/ 	this["webpackHotUpdate"] = 
-/******/ 	function webpackHotUpdateCallback(chunkId, moreModules) { // eslint-disable-line no-unused-vars
+/******/ 	this["webpackHotUpdate"] = function webpackHotUpdateCallback(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		hotAddUpdateChunk(chunkId, moreModules);
 /******/ 		if(parentHotUpdateCallback) parentHotUpdateCallback(chunkId, moreModules);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotDownloadUpdateChunk(chunkId) { // eslint-disable-line no-unused-vars
 /******/ 		var head = document.getElementsByTagName("head")[0];
 /******/ 		var script = document.createElement("script");
@@ -34,7 +33,7 @@
 /******/ 		script.src = __webpack_require__.p + "" + chunkId + "." + hotCurrentHash + ".hot-update.js";
 /******/ 		head.appendChild(script);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotDownloadManifest(callback) { // eslint-disable-line no-unused-vars
 /******/ 		if(typeof XMLHttpRequest === "undefined")
 /******/ 			return callback(new Error("No browser support"));
@@ -71,13 +70,12 @@
 /******/ 		};
 /******/ 	}
 /******/
-/******/ 	
-/******/ 	
+/******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f3740b7d053be7147068"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e0ca628d091a3d10e09d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
-/******/ 	
+/******/
 /******/ 	function hotCreateRequire(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var me = installedModules[moduleId];
 /******/ 		if(!me) return __webpack_require__;
@@ -110,7 +108,7 @@
 /******/ 				} finally {
 /******/ 					finishChunkLoading();
 /******/ 				}
-/******/ 	
+/******/
 /******/ 				function finishChunkLoading() {
 /******/ 					hotChunksLoading--;
 /******/ 					if(hotStatus === "prepare") {
@@ -126,7 +124,7 @@
 /******/ 		};
 /******/ 		return fn;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCreateModule(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var hot = {
 /******/ 			// private stuff
@@ -135,7 +133,7 @@
 /******/ 			_selfAccepted: false,
 /******/ 			_selfDeclined: false,
 /******/ 			_disposeHandlers: [],
-/******/ 	
+/******/
 /******/ 			// Module API
 /******/ 			active: true,
 /******/ 			accept: function(dep, callback) {
@@ -168,7 +166,7 @@
 /******/ 				var idx = hot._disposeHandlers.indexOf(callback);
 /******/ 				if(idx >= 0) hot._disposeHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			// Management API
 /******/ 			check: hotCheck,
 /******/ 			apply: hotApply,
@@ -183,22 +181,22 @@
 /******/ 				var idx = hotStatusHandlers.indexOf(l);
 /******/ 				if(idx >= 0) hotStatusHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			//inherit from previous dispose call
 /******/ 			data: hotCurrentModuleData[moduleId]
 /******/ 		};
 /******/ 		return hot;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	var hotStatusHandlers = [];
 /******/ 	var hotStatus = "idle";
-/******/ 	
+/******/
 /******/ 	function hotSetStatus(newStatus) {
 /******/ 		hotStatus = newStatus;
 /******/ 		for(var i = 0; i < hotStatusHandlers.length; i++)
 /******/ 			hotStatusHandlers[i].call(null, newStatus);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// while downloading
 /******/ 	var hotWaitingFiles = 0;
 /******/ 	var hotChunksLoading = 0;
@@ -206,15 +204,15 @@
 /******/ 	var hotRequestedFilesMap = {};
 /******/ 	var hotAvailibleFilesMap = {};
 /******/ 	var hotCallback;
-/******/ 	
+/******/
 /******/ 	// The update info
 /******/ 	var hotUpdate, hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 	function toModuleId(id) {
 /******/ 		var isNumber = (+id) + "" === id;
 /******/ 		return isNumber ? +id : id;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCheck(apply, callback) {
 /******/ 		if(hotStatus !== "idle") throw new Error("check() is only allowed in idle status");
 /******/ 		if(typeof apply === "function") {
@@ -234,14 +232,14 @@
 /******/ 				callback(null, null);
 /******/ 				return;
 /******/ 			}
-/******/ 	
+/******/
 /******/ 			hotRequestedFilesMap = {};
 /******/ 			hotAvailibleFilesMap = {};
 /******/ 			hotWaitingFilesMap = {};
 /******/ 			for(var i = 0; i < update.c.length; i++)
 /******/ 				hotAvailibleFilesMap[update.c[i]] = true;
 /******/ 			hotUpdateNewHash = update.h;
-/******/ 	
+/******/
 /******/ 			hotSetStatus("prepare");
 /******/ 			hotCallback = callback;
 /******/ 			hotUpdate = {};
@@ -255,7 +253,7 @@
 /******/ 			}
 /******/ 		});
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotAddUpdateChunk(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		if(!hotAvailibleFilesMap[chunkId] || !hotRequestedFilesMap[chunkId])
 /******/ 			return;
@@ -269,7 +267,7 @@
 /******/ 			hotUpdateDownloaded();
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotEnsureUpdateChunk(chunkId) {
 /******/ 		if(!hotAvailibleFilesMap[chunkId]) {
 /******/ 			hotWaitingFilesMap[chunkId] = true;
@@ -279,7 +277,7 @@
 /******/ 			hotDownloadUpdateChunk(chunkId);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotUpdateDownloaded() {
 /******/ 		hotSetStatus("ready");
 /******/ 		var callback = hotCallback;
@@ -297,7 +295,7 @@
 /******/ 			callback(null, outdatedModules);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotApply(options, callback) {
 /******/ 		if(hotStatus !== "ready") throw new Error("apply() is only allowed in ready status");
 /******/ 		if(typeof options === "function") {
@@ -313,11 +311,11 @@
 /******/ 				if(err) throw err;
 /******/ 			};
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function getAffectedStuff(module) {
 /******/ 			var outdatedModules = [module];
 /******/ 			var outdatedDependencies = {};
-/******/ 	
+/******/
 /******/ 			var queue = outdatedModules.slice();
 /******/ 			while(queue.length > 0) {
 /******/ 				var moduleId = queue.pop();
@@ -348,10 +346,10 @@
 /******/ 					queue.push(parentId);
 /******/ 				}
 /******/ 			}
-/******/ 	
+/******/
 /******/ 			return [outdatedModules, outdatedDependencies];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function addAllToSet(a, b) {
 /******/ 			for(var i = 0; i < b.length; i++) {
 /******/ 				var item = b[i];
@@ -359,7 +357,7 @@
 /******/ 					a.push(item);
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// at begin all updates modules are outdated
 /******/ 		// the "outdated" status can propagate to parents if they don't accept the children
 /******/ 		var outdatedDependencies = {};
@@ -390,7 +388,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Store self accepted outdated modules to require them later by the module system
 /******/ 		var outdatedSelfAcceptedModules = [];
 /******/ 		for(var i = 0; i < outdatedModules.length; i++) {
@@ -401,7 +399,7 @@
 /******/ 					errorHandler: installedModules[moduleId].hot._selfAccepted
 /******/ 				});
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Now in "dispose" phase
 /******/ 		hotSetStatus("dispose");
 /******/ 		var queue = outdatedModules.slice();
@@ -409,9 +407,9 @@
 /******/ 			var moduleId = queue.pop();
 /******/ 			var module = installedModules[moduleId];
 /******/ 			if(!module) continue;
-/******/ 	
+/******/
 /******/ 			var data = {};
-/******/ 	
+/******/
 /******/ 			// Call dispose handlers
 /******/ 			var disposeHandlers = module.hot._disposeHandlers;
 /******/ 			for(var j = 0; j < disposeHandlers.length; j++) {
@@ -419,13 +417,13 @@
 /******/ 				cb(data);
 /******/ 			}
 /******/ 			hotCurrentModuleData[moduleId] = data;
-/******/ 	
+/******/
 /******/ 			// disable module (this disables requires from this module)
 /******/ 			module.hot.active = false;
-/******/ 	
+/******/
 /******/ 			// remove module from cache
 /******/ 			delete installedModules[moduleId];
-/******/ 	
+/******/
 /******/ 			// remove "parents" references from all children
 /******/ 			for(var j = 0; j < module.children.length; j++) {
 /******/ 				var child = installedModules[module.children[j]];
@@ -436,7 +434,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// remove outdated dependency from module children
 /******/ 		for(var moduleId in outdatedDependencies) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(outdatedDependencies, moduleId)) {
@@ -449,19 +447,19 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Not in "apply" phase
 /******/ 		hotSetStatus("apply");
-/******/ 	
+/******/
 /******/ 		hotCurrentHash = hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 		// insert new code
 /******/ 		for(var moduleId in appliedUpdate) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
 /******/ 				modules[moduleId] = appliedUpdate[moduleId];
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// call accept handlers
 /******/ 		var error = null;
 /******/ 		for(var moduleId in outdatedDependencies) {
@@ -486,7 +484,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Load self accepted modules
 /******/ 		for(var i = 0; i < outdatedSelfAcceptedModules.length; i++) {
 /******/ 			var item = outdatedSelfAcceptedModules[i];
@@ -506,13 +504,13 @@
 /******/ 					error = err;
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// handle errors in accept handlers and self accepted module load
 /******/ 		if(error) {
 /******/ 			hotSetStatus("fail");
 /******/ 			return callback(error);
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		hotSetStatus("idle");
 /******/ 		callback(null, outdatedModules);
 /******/ 	}
@@ -677,7 +675,7 @@
 	        });
 	
 	        window.$$ = Dom7;
-	        window.hiApp = new Framework7({
+	        window.Jellyfish = new Framework7({
 	            pushState: false,
 	            popupCloseByOutside:false,
 	            animateNavBackIcon: true,
@@ -713,15 +711,15 @@
 	            }
 	        });
 	
-	        window.homeF7View = hiApp.addView('#homeView', {
+	        window.homeF7View = Jellyfish.addView('#homeView', {
 	            dynamicNavbar: true
 	        });
 	
-	        hiApp.addView('#contactView', {
+	        Jellyfish.addView('#contactView', {
 	            dynamicNavbar: true
 	        });
 	
-	        hiApp.addView('#settingView', {
+	        Jellyfish.addView('#settingView', {
 	            dynamicNavbar: true
 	        });
 	
@@ -15705,11 +15703,11 @@
 	    },
 	
 	    hideToolbar: function() {
-	        hiApp.hideToolbar('.toolbar');
+	        Jellyfish.hideToolbar('.toolbar');
 	    },
 	
 	    showToolbar: function() {
-	        hiApp.showToolbar('.toolbar');
+	        Jellyfish.showToolbar('.toolbar');
 	    },
 	
 	    timeFormat: function(ms){
@@ -15788,6 +15786,7 @@
 	        }
 	    }
 	};
+
 
 /***/ },
 /* 8 */
@@ -15951,7 +15950,7 @@
 	        service.getTimeline(function(tl){
 	            that.renderTimeline(tl);
 	
-	            hiApp.hideIndicator();
+	            Jellyfish.hideIndicator();
 	
 	            //Unlock scroll loading status
 	            var ptrContent = $$('#homeView').find('.pull-to-refresh-content');
@@ -15973,7 +15972,7 @@
 	
 	                if(parseInt(newestId) === 48) {
 	                    home.showLoadResult(i18n.index.nothing_loaded);
-	                    hiApp.pullToRefreshDone();
+	                    Jellyfish.pullToRefreshDone();
 	                    return false;
 	                }
 	
@@ -15987,7 +15986,7 @@
 	                    home.showLoadResult(i18n.index.nothing_loaded);
 	                }
 	
-	                hiApp.pullToRefreshDone();
+	                Jellyfish.pullToRefreshDone();
 	
 	            },1500);
 	
@@ -15996,7 +15995,7 @@
 	    infiniteTimeline: function(){
 	        var $this = $$(this);
 	
-	        hiApp.showIndicator();
+	        Jellyfish.showIndicator();
 	        service.infiniteTimeline(function(tl){
 	            var status = $this.data('scrollLoading');
 	            if (status === 'loading') return;
@@ -16007,15 +16006,15 @@
 	            var length = items.length;
 	            var lastId = items.eq(length - 1).data('id');
 	            if(parseInt(lastId) === 24){
-	                hiApp.detachInfiniteScroll($this);
-	                hiApp.hideIndicator();
+	                Jellyfish.detachInfiniteScroll($this);
+	                Jellyfish.hideIndicator();
 	            }else{
 	
 	                setTimeout(function(){
 	                    $this.data('scrollLoading','unloading');
 	                    home.renderTimeline(tl, 'append');
 	
-	                    hiApp.hideIndicator();
+	                    Jellyfish.hideIndicator();
 	                },1500);
 	            }
 	        });
@@ -16027,7 +16026,7 @@
 	
 	        $$('#homeView .pull-to-refresh-content').scrollTop(0,300);
 	
-	        hiApp.pullToRefreshTrigger('#homeView .pull-to-refresh-content');
+	        Jellyfish.pullToRefreshTrigger('#homeView .pull-to-refresh-content');
 	    },
 	    showLoadResult: function(text){
 	        setTimeout(function(){
@@ -16048,7 +16047,7 @@
 	
 	        var url = $$(this).attr('src');
 	
-	        var myPhotoBrowser = hiApp.photoBrowser({
+	        var myPhotoBrowser = Jellyfish.photoBrowser({
 	            photos: [url],
 	            toolbar: false,
 	            backLinkText: i18n.global.close
@@ -16122,6 +16121,7 @@
 	};
 	
 	module.exports = home;
+
 
 /***/ },
 /* 13 */
@@ -16209,9 +16209,9 @@
 	            var network = networkStatus.checkConnection();
 	            if(network === 'NoNetwork'){
 	
-	                hiApp.alert(i18n.error.no_network,function(){
-	                    hiApp.hideIndicator();
-	                    hiApp.hidePreloader();
+	                Jellyfish.alert(i18n.error.no_network,function(){
+	                    Jellyfish.hideIndicator();
+	                    Jellyfish.hidePreloader();
 	                });
 	
 	                return false;
@@ -16239,9 +16239,9 @@
 	
 	                }else{
 	
-	                    hiApp.alert(codeLevel.message,function(){
-	                        hiApp.hideIndicator();
-	                        hiApp.hidePreloader();
+	                    Jellyfish.alert(codeLevel.message,function(){
+	                        Jellyfish.hideIndicator();
+	                        Jellyfish.hidePreloader();
 	                    });
 	                }
 	            }
@@ -16249,6 +16249,7 @@
 	
 	    }
 	};
+
 
 /***/ },
 /* 16 */
@@ -16278,7 +16279,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "{{#timeline}}\r\n<div data-id=\"{{id}}\" class=\"card ks-facebook-card\">\r\n    <div class=\"card-header\">\r\n        <div class=\"ks-facebook-avatar\" data-avatar-id=\"{{avatar}}\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"34\" height=\"34\"></div>\r\n        <div class=\"ks-facebook-name\">{{nickname}}</div>\r\n        <div class=\"ks-facebook-date\" data-time=\"{{created_at}}\">{{../time}}</div>\r\n    </div>\r\n    <div class=\"card-content\">\r\n        <div class=\"card-content-inner\">\r\n            <p>{{../finalText}}</p>\r\n            {{#if original_pic}}\r\n            <div class=\"item-image\">\r\n                <img src=\"{{original_pic}}\" width=\"100%\" class=\"\">\r\n            </div>\r\n            {{/if}}\r\n        </div>\r\n    </div>\r\n    <div class=\"card-footer\"><a href=\"#\" class=\"link\">{{t i18n=\"timeline.forward\"}}</a><a href=\"#\" class=\"link\">{{t i18n=\"timeline.comment\"}}</a><a href=\"#\" class=\"link\">{{t i18n=\"timeline.like\"}}</a></div>\r\n</div>\r\n{{/timeline}}";
+	module.exports = "{{#timeline}}\n<div data-id=\"{{id}}\" class=\"card ks-facebook-card\">\n    <div class=\"card-header\">\n        <div class=\"ks-facebook-avatar\" data-avatar-id=\"{{avatar}}\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"34\" height=\"34\"></div>\n        <div class=\"ks-facebook-name\">{{nickname}}</div>\n        <div class=\"ks-facebook-date\" data-time=\"{{created_at}}\">{{../time}}</div>\n    </div>\n    <div class=\"card-content\">\n        <div class=\"card-content-inner\">\n            <p>{{../finalText}}</p>\n            {{#if original_pic}}\n            <div class=\"item-image\">\n                <img src=\"{{original_pic}}\" width=\"100%\" class=\"\">\n            </div>\n            {{/if}}\n        </div>\n    </div>\n    <div class=\"card-footer\"><a href=\"#\" class=\"link\">{{t i18n=\"timeline.forward\"}}</a><a href=\"#\" class=\"link\">{{t i18n=\"timeline.comment\"}}</a><a href=\"#\" class=\"link\">{{t i18n=\"timeline.like\"}}</a></div>\n</div>\n{{/timeline}}";
 
 /***/ },
 /* 18 */
@@ -16297,7 +16298,7 @@
 	        var output = appFunc.renderTpl(template, {
 	            send_placeholder: i18n.index.send_placeholder
 	        });
-	        hiApp.popup(output);
+	        Jellyfish.popup(output);
 	
 	        var bindings = [{
 	            element: '#sendWeiboBtn',
@@ -16323,7 +16324,7 @@
 	        var text = $$('#messageText').val();
 	
 	        if(appFunc.getCharLength(text) < 4){
-	            hiApp.alert(i18n.index.err_text_too_short);
+	            Jellyfish.alert(i18n.index.err_text_too_short);
 	            return;
 	        }
 	
@@ -16334,11 +16335,11 @@
 	                camera.startUpload(imgSrc);
 	            }
 	        }else {
-	            hiApp.showPreloader(i18n.index.sending);
+	            Jellyfish.showPreloader(i18n.index.sending);
 	
 	            setTimeout(function () {
-	                hiApp.hidePreloader();
-	                hiApp.closeModal('.send-popup');
+	                Jellyfish.hidePreloader();
+	                Jellyfish.closeModal('.send-popup');
 	                //Refresh Timeline
 	            }, 1300);
 	        }
@@ -16346,6 +16347,7 @@
 	};
 	
 	module.exports = inputModule;
+
 
 /***/ },
 /* 19 */
@@ -16357,7 +16359,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"send-popup popup\">\r\n    <div class=\"view navbar-fixed\">\r\n        <div class=\"page\">\r\n            <div class=\"navbar\">\r\n                <div class=\"navbar-inner\">\r\n                    <div class=\"left\"><a href=\"#\" class=\"link close-popup\">{{t i18n=\"global.cancel\"}}</a></div>\r\n                    <div class=\"center\">{{t i18n=\"index.sen_tweet\"}}</div>\r\n                    <div class=\"right\"><a id=\"sendWeiboBtn\" href=\"#\" class=\"link color-orange\">{{t i18n=\"global.send\"}}</a></div>\r\n                </div>\r\n            </div>\r\n            <div class=\"page-content message-content\">\r\n\r\n                <div class=\"message-input\">\r\n                    <textarea id=\"messageText\" placeholder=\"{{send_placeholder}}\"></textarea>\r\n                </div>\r\n\r\n                <div class=\"message-tools\">\r\n                    <ul>\r\n                        <li class=\"camera image-upload\">\r\n                            <i class=\"icon ios7-camera-outline\"></i>\r\n                        </li>\r\n                        <li class=\"photoalbum image-upload\">\r\n                            <i class=\"icon ios7-pic\"></i>\r\n                        </li>\r\n                        <li><i class=\"icon ios7-emotion\"></i></li>\r\n                        <li><i class=\"icon ios7-at-outline\"></i></li>\r\n                        <li class=\"get-position\"><i class=\"icon ios7-dingxiang\"></i></li>\r\n                    </ul>\r\n                </div>\r\n\r\n                <div id=\"geoInfo\" class=\"geo-info\">\r\n                    <div class=\"location\"><i class=\"icon preloader\"></i><span class=\"info\">{{t i18n=\"geo.loading_geo\"}}</span></div>\r\n                    <div class=\"close\"><i class=\"icon ios7-close\"></i></div>\r\n                </div>\r\n\r\n                <div id=\"uploadPicPreview\" class=\"upload-pic-preview\">\r\n                    <img src=\"http://placeholder\" alt=\"\" />\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"send-popup popup\">\n    <div class=\"view navbar-fixed\">\n        <div class=\"page\">\n            <div class=\"navbar\">\n                <div class=\"navbar-inner\">\n                    <div class=\"left\"><a href=\"#\" class=\"link close-popup\">{{t i18n=\"global.cancel\"}}</a></div>\n                    <div class=\"center\">{{t i18n=\"index.sen_tweet\"}}</div>\n                    <div class=\"right\"><a id=\"sendWeiboBtn\" href=\"#\" class=\"link color-orange\">{{t i18n=\"global.send\"}}</a></div>\n                </div>\n            </div>\n            <div class=\"page-content message-content\">\n\n                <div class=\"message-input\">\n                    <textarea id=\"messageText\" placeholder=\"{{send_placeholder}}\"></textarea>\n                </div>\n\n                <div class=\"message-tools\">\n                    <ul>\n                        <li class=\"camera image-upload\">\n                            <i class=\"icon ios7-camera-outline\"></i>\n                        </li>\n                        <li class=\"photoalbum image-upload\">\n                            <i class=\"icon ios7-pic\"></i>\n                        </li>\n                        <li><i class=\"icon ios7-emotion\"></i></li>\n                        <li><i class=\"icon ios7-at-outline\"></i></li>\n                        <li class=\"get-position\"><i class=\"icon ios7-dingxiang\"></i></li>\n                    </ul>\n                </div>\n\n                <div id=\"geoInfo\" class=\"geo-info\">\n                    <div class=\"location\"><i class=\"icon preloader\"></i><span class=\"info\">{{t i18n=\"geo.loading_geo\"}}</span></div>\n                    <div class=\"close\"><i class=\"icon ios7-close\"></i></div>\n                </div>\n\n                <div id=\"uploadPicPreview\" class=\"upload-pic-preview\">\n                    <img src=\"http://placeholder\" alt=\"\" />\n                </div>\n\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 /* 21 */
@@ -16371,7 +16373,7 @@
 	    getPicture: function(){
 	
 	        if(!appFunc.isPhonegap()){
-	            hiApp.alert(i18n.error.phonegap_only);
+	            Jellyfish.alert(i18n.error.phonegap_only);
 	            return false;
 	        }
 	
@@ -16414,7 +16416,7 @@
 	    cameraError: function(message){
 	        setTimeout(function(){
 	            if(message !== 'no image selected'){
-	                hiApp.alert(message);
+	                Jellyfish.alert(message);
 	            }
 	        },500);
 	    },
@@ -16430,6 +16432,7 @@
 	
 	module.exports = camera;
 
+
 /***/ },
 /* 22 */
 /***/ function(module, exports) {
@@ -16443,7 +16446,7 @@
 	
 	        //Upload progress
 	        var text = '<div id="progress" class="progress"><span class="progress-bar"></span></div>';
-	        hiApp.modal({
+	        Jellyfish.modal({
 	            title: i18n.camera.image_uploading + ' <span class="percent"></span>',
 	            text: text,
 	            buttons: [{
@@ -16465,17 +16468,17 @@
 	    },
 	
 	    uploadSuccess: function (r) {
-	        hiApp.closeModal('.modal');
+	        Jellyfish.closeModal('.modal');
 	
 	        navigator.camera.cleanup();
 	
 	        var response = r.response ? JSON.parse(r.response) : '';
 	
-	        hiApp.alert(response);
+	        Jellyfish.alert(response);
 	    },
 	
 	    uploadFail: function (error) {
-	        hiApp.closeModal('.modal');
+	        Jellyfish.closeModal('.modal');
 	
 	        /* global FileTransferError */
 	        var errText;
@@ -16497,7 +16500,7 @@
 	                break;
 	        }
 	
-	        hiApp.alert(errText);
+	        Jellyfish.alert(errText);
 	    },
 	
 	    onprogress: function(progressEvent){
@@ -16514,6 +16517,7 @@
 	};
 	
 	module.exports = fileTransfer;
+
 
 /***/ },
 /* 23 */
@@ -16579,7 +16583,7 @@
 	    },
 	
 	    cleanGeo: function(){
-	        hiApp.confirm(i18n.geo.confirm_clean_geo,geolocation.initGeo);
+	        Jellyfish.confirm(i18n.geo.confirm_clean_geo,geolocation.initGeo);
 	    }
 	};
 	
@@ -16602,7 +16606,7 @@
 	    },
 	    loadContacts: function(){
 	        if(contacts.beforeLoadContacts()) {
-	            hiApp.searchbar('#contactView .searchbar',{
+	            Jellyfish.searchbar('#contactView .searchbar',{
 	                searchList: '.contacts-list',
 	                searchIn: '.item-title'
 	            });
@@ -16615,7 +16619,7 @@
 	                    var output = appFunc.renderTpl(template, renderData);
 	                    $$('#contactView .contacts-list ul').html(output);
 	
-	                    hiApp.hideIndicator();
+	                    Jellyfish.hideIndicator();
 	
 	                },500);
 	            });
@@ -16625,7 +16629,7 @@
 	        if($$('#contactView .contacts-list .list-group .contact-item').length > 0) {
 	            return false;
 	        }else {
-	            hiApp.showIndicator();
+	            Jellyfish.showIndicator();
 	            return true;
 	        }
 	    },
@@ -16669,7 +16673,7 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "{{#contacts}}\r\n{{#if header}}\r\n<li class=\"list-group-title\">{{header}}</li>\r\n{{/if}}\r\n<li class=\"contact-item\">\r\n    <a href=\"page/message.html?nickname={{nickname}}\" class=\"item-link\">\r\n        <div class=\"item-content\">\r\n            <div class=\"item-media\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"44\"></div>\r\n            <div class=\"item-inner\">\r\n                <div class=\"item-title-row\">\r\n                    <div class=\"item-title\">{{nickname}}</div>\r\n                </div>\r\n                <div class=\"item-subtitle\">{{location}}</div>\r\n            </div>\r\n        </div>\r\n    </a>\r\n</li>\r\n{{/contacts}}";
+	module.exports = "{{#contacts}}\n{{#if header}}\n<li class=\"list-group-title\">{{header}}</li>\n{{/if}}\n<li class=\"contact-item\">\n    <a href=\"page/message.html?nickname={{nickname}}\" class=\"item-link\">\n        <div class=\"item-content\">\n            <div class=\"item-media\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"44\"></div>\n            <div class=\"item-inner\">\n                <div class=\"item-title-row\">\n                    <div class=\"item-title\">{{nickname}}</div>\n                </div>\n                <div class=\"item-subtitle\">{{location}}</div>\n            </div>\n        </div>\n    </a>\n</li>\n{{/contacts}}";
 
 /***/ },
 /* 28 */
@@ -16687,23 +16691,23 @@
 	    renderSetting: function(){
 	        if($$('#settingView .page-content')[0]) return;
 	
-	        hiApp.showIndicator();
+	        Jellyfish.showIndicator();
 	
 	        var renderData = {
-	            avatarUrl: 'https://d13yacurqjgara.cloudfront.net/users/216043/screenshots/2027675/jellyfish_logo.jpg',
-	            nickName: 'Jellyfish',
-	            points: '200'
+	            avatarUrl: "http://i13.tietuku.com/2363054492b63eac.jpg",
+	            nickName: 'Jelly',
+	            points: '100'
 	        };
 	
 	        var output = appFunc.renderTpl(template, renderData);
 	        $$('#settingView .page[data-page="setting"]').html(output);
 	
-	        hiApp.hideIndicator();
+	        Jellyfish.hideIndicator();
 	    },
 	    logOut: function(){
-	        hiApp.confirm(i18n.setting.confirm_logout,function(){
+	        Jellyfish.confirm(i18n.setting.confirm_logout,function(){
 	            //mainView.router.loadPage('page/login.html');
-	            //hiApp.showTab('#ourView');
+	            //Jellyfish.showTab('#ourView');
 	        });
 	    },
 	    bindEvents: function(){
@@ -16728,6 +16732,7 @@
 	
 	module.exports = settingView;
 
+
 /***/ },
 /* 29 */
 /***/ function(module, exports) {
@@ -16738,7 +16743,7 @@
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"page-content\">\r\n    <div class=\"setting-page list-block\">\r\n        <ul>\r\n            <li>\r\n                <div class=\"item-content\">\r\n                    <div class=\"item-inner user-info\">\r\n                        <div class=\"avatar\">\r\n                            <img src=\"{{avatarUrl}}\" alt=\"\">\r\n                        </div>\r\n                        <div class=\"user-detail\">\r\n                            <div class=\"name\">{{t i18n=\"setting.nickname\"}}: {{nickName}}</div>\r\n                            <div class=\"point\">{{t i18n=\"setting.points\"}}: {{points}}</div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </li>\r\n            <li>\r\n                <a href=\"page/feedback.html\" class=\"item-link\">\r\n                    <div class=\"item-content\">\r\n                        <div class=\"item-media feedback spring\"></div>\r\n                        <div class=\"item-inner\">\r\n                            <div class=\"item-title\">{{t i18n=\"setting.feed_back\"}}</div>\r\n                        </div>\r\n                    </div>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href=\"page/language.html?from=setting\" class=\"item-link\">\r\n                    <div class=\"item-content\">\r\n                        <div class=\"item-media language\">\r\n                            <i class=\"icon ios7-world-outline\"></i>\r\n                        </div>\r\n                        <div class=\"item-inner\">\r\n                            <div class=\"item-title\">{{t i18n=\"global.language\"}}</div>\r\n                        </div>\r\n                    </div>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href=\"page/about.html\" class=\"item-link\">\r\n                    <div class=\"item-content\">\r\n                        <div class=\"item-media about spring\"></div>\r\n                        <div class=\"item-inner\">\r\n                            <div class=\"item-title\">{{t i18n=\"setting.about\"}}</div>\r\n                        </div>\r\n                    </div>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n        <a href=\"#\" class=\"button button-big logout-button button-fill color-red\">{{t i18n=\"setting.login_out\"}}</a>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"page-content\">\n    <div class=\"setting-page list-block\">\n        <ul>\n            <li>\n                <div class=\"item-content\">\n                    <div class=\"item-inner user-info\">\n                        <div class=\"avatar\">\n                            <img src=\"{{avatarUrl}}\" alt=\"\">\n                        </div>\n                        <div class=\"user-detail\">\n                            <div class=\"name\">{{t i18n=\"setting.nickname\"}}: {{nickName}}</div>\n                            <div class=\"point\">{{t i18n=\"setting.points\"}}: {{points}}</div>\n                        </div>\n                    </div>\n                </div>\n            </li>\n            <!-- <li>\n                <a href=\"page/feedback.html\" class=\"item-link\">\n                    <div class=\"item-content\">\n                        <div class=\"item-media feedback spring\"></div>\n                        <div class=\"item-inner\">\n                            <div class=\"item-title\">{{t i18n=\"setting.feed_back\"}}</div>\n                        </div>\n                    </div>\n                </a>\n            </li> -->\n            <li>\n                <a href=\"page/language.html?from=setting\" class=\"item-link\">\n                    <div class=\"item-content\">\n                        <div class=\"item-media language\">\n                            <i class=\"icon ios7-world-outline\"></i>\n                        </div>\n                        <div class=\"item-inner\">\n                            <div class=\"item-title\">{{t i18n=\"global.language\"}}</div>\n                        </div>\n                    </div>\n                </a>\n            </li>\n            <li>\n                <a href=\"page/about.html\" class=\"item-link\">\n                    <div class=\"item-content\">\n                        <div class=\"item-media about spring\"></div>\n                        <div class=\"item-inner\">\n                            <div class=\"item-title\">{{t i18n=\"setting.about\"}}</div>\n                        </div>\n                    </div>\n                </a>\n            </li>\n        </ul>\n        <a href=\"#\" class=\"button button-big logout-button button-fill color-red\">{{t i18n=\"setting.login_out\"}}</a>\n    </div>\n</div>";
 
 /***/ },
 /* 31 */
@@ -16851,7 +16856,7 @@
 	        }
 	
 	        var output = appFunc.renderTpl(popupTpl, renderData);
-	        hiApp.popup(output);
+	        Jellyfish.popup(output);
 	
 	        var bindings = [{
 	            element:'#commentBtn',
@@ -16865,15 +16870,15 @@
 	        var text = $$('#commentText').val();
 	
 	        if(appFunc.getCharLength(text) < 4){
-	            hiApp.alert(i18n.index.err_text_too_short);
+	            Jellyfish.alert(i18n.index.err_text_too_short);
 	            return false;
 	        }
 	
-	        hiApp.showPreloader(i18n.comment.commenting);
+	        Jellyfish.showPreloader(i18n.comment.commenting);
 	
 	        setTimeout(function(){
-	            hiApp.hidePreloader();
-	            hiApp.closeModal('.comment-popup');
+	            Jellyfish.hidePreloader();
+	            Jellyfish.closeModal('.comment-popup');
 	
 	            //Refresh comment content
 	        },1500);
@@ -16901,11 +16906,12 @@
 	        ];
 	
 	        var groups = [buttons1, buttons2];
-	        hiApp.actions(groups);
+	        Jellyfish.actions(groups);
 	    }
 	};
 	
 	module.exports = commentModule;
+
 
 /***/ },
 /* 34 */
@@ -16927,19 +16933,19 @@
 /* 35 */
 /***/ function(module, exports) {
 
-	module.exports = "{{#each comments}}\r\n<li class=\"comment-item\">\r\n    <div class=\"avatar\">\r\n        <img src=\"http://lorempixel.com/68/68/people/{{avatar}}/\" alt=\"\">\r\n    </div>\r\n    <div class=\"comment-detail\">\r\n        <div class=\"name\">{{name}}</div>\r\n        <div class=\"text\">{{text}}</div>\r\n        <div class=\"time\">{{rtime}}</div>\r\n    </div>\r\n</li>\r\n{{else}}\r\n<div class=\"none-comment\">\r\n    <i class=\"icon ios7-chatboxes-outline\"></i>\r\n    <p>{{t i18n=\"i18n.comment.empty_comment\"}}</p>\r\n</div>\r\n{{/each}}";
+	module.exports = "{{#each comments}}\n<li class=\"comment-item\">\n    <div class=\"avatar\">\n        <img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" alt=\"\">\n    </div>\n    <div class=\"comment-detail\">\n        <div class=\"name\">{{name}}</div>\n        <div class=\"text\">{{text}}</div>\n        <div class=\"time\">{{rtime}}</div>\n    </div>\n</li>\n{{else}}\n<div class=\"none-comment\">\n    <i class=\"icon ios7-chatboxes-outline\"></i>\n    <p>{{t i18n=\"i18n.comment.empty_comment\"}}</p>\n</div>\n{{/each}}";
 
 /***/ },
 /* 36 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"popup comment-popup\">\r\n    <div class=\"view navbar-fixed\">\r\n        <div class=\"page\">\r\n            <div class=\"navbar\">\r\n                <div class=\"navbar-inner\">\r\n                    <div class=\"left\"><a href=\"#\" class=\"link close-popup\">{{t i18n=\"global.cancel\"}}</a></div>\r\n                    <div class=\"center\">{{title}}</div>\r\n                    <div class=\"right\"><a id=\"commentBtn\" href=\"#\" class=\"link color-orange\">{{t i18n=\"global.send\"}}</a></div>\r\n                </div>\r\n            </div>\r\n            <div class=\"page-content message-content\">\r\n\r\n                <div class=\"message-input\">\r\n                    <textarea id=\"commentText\" placeholder=\"{{placeholder}}\"></textarea>\r\n                </div>\r\n\r\n                <div class=\"message-tools\">\r\n                    <ul>\r\n                        <li><i class=\"icon ios7-emotion\"></i></li>\r\n                        <li><i class=\"icon ios7-at-outline\"></i></li>\r\n                    </ul>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"popup comment-popup\">\n    <div class=\"view navbar-fixed\">\n        <div class=\"page\">\n            <div class=\"navbar\">\n                <div class=\"navbar-inner\">\n                    <div class=\"left\"><a href=\"#\" class=\"link close-popup\">{{t i18n=\"global.cancel\"}}</a></div>\n                    <div class=\"center\">{{title}}</div>\n                    <div class=\"right\"><a id=\"commentBtn\" href=\"#\" class=\"link color-orange\">{{t i18n=\"global.send\"}}</a></div>\n                </div>\n            </div>\n            <div class=\"page-content message-content\">\n\n                <div class=\"message-input\">\n                    <textarea id=\"commentText\" placeholder=\"{{placeholder}}\"></textarea>\n                </div>\n\n                <div class=\"message-tools\">\n                    <ul>\n                        <li><i class=\"icon ios7-emotion\"></i></li>\n                        <li><i class=\"icon ios7-at-outline\"></i></li>\n                    </ul>\n                </div>\n\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ },
 /* 37 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card ks-facebook-card\">\r\n    <div class=\"card-header\">\r\n        <div class=\"ks-facebook-avatar\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"34\" height=\"34\"></div>\r\n        <div class=\"ks-facebook-name\">{{nickname}}</div>\r\n        <div class=\"ks-facebook-date\">{{time}}</div>\r\n    </div>\r\n    <div class=\"card-content\">\r\n        <div class=\"card-content-inner\">\r\n            <p>{{text}}</p>\r\n            {{#if image}}\r\n            <div class=\"item-image\">\r\n                <img src=\"{{image}}\" width=\"100%\" class=\"\">\r\n            </div>\r\n            {{/if}}\r\n        </div>\r\n    </div>\r\n</div>";
+	module.exports = "<div class=\"card ks-facebook-card\">\n    <div class=\"card-header\">\n        <div class=\"ks-facebook-avatar\"><img src=\"https://avatars1.githubusercontent.com/u/{{avatar}}\" width=\"34\" height=\"34\"></div>\n        <div class=\"ks-facebook-name\">{{nickname}}</div>\n        <div class=\"ks-facebook-date\">{{time}}</div>\n    </div>\n    <div class=\"card-content\">\n        <div class=\"card-content-inner\">\n            <p>{{text}}</p>\n            {{#if image}}\n            <div class=\"item-image\">\n                <img src=\"{{image}}\" width=\"100%\" class=\"\">\n            </div>\n            {{/if}}\n        </div>\n    </div>\n</div>";
 
 /***/ },
 /* 38 */
@@ -16954,10 +16960,10 @@
 	        this.bindEvents();
 	    },
 	    sendFeedback: function(){
-	        hiApp.showPreloader(i18n.index.sending);
+	        Jellyfish.showPreloader(i18n.index.sending);
 	        setTimeout(function(){
-	            hiApp.hidePreloader();
-	            hiApp.alert(i18n.setting.feed_back_result);
+	            Jellyfish.hidePreloader();
+	            Jellyfish.alert(i18n.setting.feed_back_result);
 	        },1000);
 	    },
 	    bindEvents: function(){
@@ -16970,6 +16976,7 @@
 	        appFunc.bindEvents(bindings);
 	    }
 	};
+
 
 /***/ },
 /* 39 */
@@ -17075,13 +17082,13 @@
 	            that.renderMessages();
 	
 	            // Init Messages
-	            messageLayout = hiApp.messages('#contactView .messages', {
+	            messageLayout = Jellyfish.messages('#contactView .messages', {
 	                autoLayout:true
 	            });
 	        });
 	    },
 	    renderMessages: function(message){
-	        hiApp.showIndicator();
+	        Jellyfish.showIndicator();
 	
 	        service.getMessages(function(m){
 	            setTimeout(function(){
@@ -17091,7 +17098,7 @@
 	                var output = appFunc.renderTpl(template, renderData);
 	                $$('.page[data-page="message"] .messages').html(output);
 	
-	                hiApp.hideIndicator();
+	                Jellyfish.hideIndicator();
 	
 	            },600);
 	        });
@@ -17163,7 +17170,7 @@
 /* 46 */
 /***/ function(module, exports) {
 
-	module.exports = "{{#each message}}\r\n{{#if date}}\r\n<div class=\"messages-date\">{{date}}</div>\r\n{{/if}}\r\n{{#if image}}\r\n<div class=\"message message-{{from}} message-pic \">\r\n    <div class=\"message-text\"><img src=\"{{text}}\"/></div>\r\n</div>\r\n{{else}}\r\n<div class=\"message message-{{from}} message-last\">\r\n    <div class=\"message-text\">{{text}}</div>\r\n</div>\r\n{{/if}}\r\n{{/each}}";
+	module.exports = "{{#each message}}\n{{#if date}}\n<div class=\"messages-date\">{{date}}</div>\n{{/if}}\n{{#if image}}\n<div class=\"message message-{{from}} message-pic \">\n    <div class=\"message-text\"><img src=\"{{text}}\"/></div>\n</div>\n{{else}}\n<div class=\"message message-{{from}} message-last\">\n    <div class=\"message-text\">{{text}}</div>\n</div>\n{{/if}}\n{{/each}}";
 
 /***/ }
 /******/ ]);

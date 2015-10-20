@@ -44,9 +44,9 @@ module.exports = {
             var network = networkStatus.checkConnection();
             if(network === 'NoNetwork'){
 
-                hiApp.alert(i18n.error.no_network,function(){
-                    hiApp.hideIndicator();
-                    hiApp.hidePreloader();
+                Jellyfish.alert(i18n.error.no_network,function(){
+                    Jellyfish.hideIndicator();
+                    Jellyfish.hidePreloader();
                 });
 
                 return false;
@@ -74,9 +74,9 @@ module.exports = {
 
                 }else{
 
-                    hiApp.alert(codeLevel.message,function(){
-                        hiApp.hideIndicator();
-                        hiApp.hidePreloader();
+                    Jellyfish.alert(codeLevel.message,function(){
+                        Jellyfish.hideIndicator();
+                        Jellyfish.hidePreloader();
                     });
                 }
             }

@@ -63,11 +63,6 @@
             "from": "sent"
         },
         {
-            "text": "http://lorempixel.com/1000/700/nature/5/",
-            "image": true,
-            "from": "sent"
-        },
-        {
             "text": "Er...",
             "from": "received"
         }

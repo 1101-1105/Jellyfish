@@ -58,7 +58,7 @@ var geolocation = {
     },
 
     cleanGeo: function(){
-        hiApp.confirm(i18n.geo.confirm_clean_geo,geolocation.initGeo);
+        Jellyfish.confirm(i18n.geo.confirm_clean_geo,geolocation.initGeo);
     }
 };
 

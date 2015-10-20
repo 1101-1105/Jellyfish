@@ -11,7 +11,7 @@ var inputModule = {
         var output = appFunc.renderTpl(template, {
             send_placeholder: i18n.index.send_placeholder
         });
-        hiApp.popup(output);
+        Jellyfish.popup(output);
 
         var bindings = [{
             element: '#sendWeiboBtn',
@@ -37,7 +37,7 @@ var inputModule = {
         var text = $$('#messageText').val();
 
         if(appFunc.getCharLength(text) < 4){
-            hiApp.alert(i18n.index.err_text_too_short);
+            Jellyfish.alert(i18n.index.err_text_too_short);
             return;
         }
 
@@ -48,11 +48,11 @@ var inputModule = {
                 camera.startUpload(imgSrc);
             }
         }else {
-            hiApp.showPreloader(i18n.index.sending);
+            Jellyfish.showPreloader(i18n.index.sending);
 
             setTimeout(function () {
-                hiApp.hidePreloader();
-                hiApp.closeModal('.send-popup');
+                Jellyfish.hidePreloader();
+                Jellyfish.closeModal('.send-popup');
                 //Refresh Timeline
             }, 1300);
         }

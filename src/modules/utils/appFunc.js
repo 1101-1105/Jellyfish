@@ -32,11 +32,11 @@ module.exports = {
     },
 
     hideToolbar: function() {
-        hiApp.hideToolbar('.toolbar');
+        Jellyfish.hideToolbar('.toolbar');
     },
 
     showToolbar: function() {
-        hiApp.showToolbar('.toolbar');
+        Jellyfish.showToolbar('.toolbar');
     },
 
     timeFormat: function(ms){

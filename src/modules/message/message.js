@@ -37,13 +37,13 @@ module.exports = {
             that.renderMessages();
 
             // Init Messages
-            messageLayout = hiApp.messages('#contactView .messages', {
+            messageLayout = Jellyfish.messages('#contactView .messages', {
                 autoLayout:true
             });
         });
     },
     renderMessages: function(message){
-        hiApp.showIndicator();
+        Jellyfish.showIndicator();
 
         service.getMessages(function(m){
             setTimeout(function(){
@@ -53,7 +53,7 @@ module.exports = {
                 var output = appFunc.renderTpl(template, renderData);
                 $$('.page[data-page="message"] .messages').html(output);
 
-                hiApp.hideIndicator();
+                Jellyfish.hideIndicator();
 
             },600);
         });

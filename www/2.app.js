@@ -5,7 +5,7 @@ webpackJsonp([2],{
 
 	module.exports = {
 	    app: {
-	        name: 'HiApp'
+	        name: 'Jellyfish'
 	    },
 	    global: {
 	        cancel: '取消',
@@ -97,6 +97,7 @@ webpackJsonp([2],{
 	        phonegap_only:'该模块只支持在PhoneGap中使用'
 	    }
 	};
+
 
 /***/ }
 

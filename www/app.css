@@ -8155,7 +8155,7 @@ html:not(.watch-active-state) .layout-white label.label-radio:active,
   width: 0;
   height: 0;
   top: 13px;
-  left: 48px;
+  left: 25px;
   border: 9px solid rgba(255, 255, 255, 0);
   border-bottom: 9px solid #f7f7f7;
 }
@@ -8249,6 +8249,7 @@ html:not(.watch-active-state) .layout-white label.label-radio:active,
   font-size: 20px;
 }
 .about-page .contact-list {
+  text-align: center;
   margin: 0 auto;
   width: 230px;
 }

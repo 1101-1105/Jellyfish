@@ -5,7 +5,7 @@ webpackJsonp([1],{
 
 	module.exports = {
 	    app: {
-	        name: 'HiApp'
+	        name: 'Jellyfish'
 	    },
 	    global: {
 	        cancel: 'Cancel',
@@ -97,6 +97,7 @@ webpackJsonp([1],{
 	        phonegap_only:'PhoneGap Only'
 	    }
 	};
+
 
 /***/ }
 
