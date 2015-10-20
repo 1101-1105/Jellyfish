@@ -1,0 +1,54 @@
+{
+    "err_code": 0,
+    "err_msg": "success",
+    "data": [
+        {
+            "id": "41",
+            "nickname":"Peterx",
+            "avatar":"15198390",
+            "text": "Behind every successful man there's a lot u unsuccessful years.",
+            "original_pic": "",
+            "created_at": "1404709434"
+        },
+        {
+            "id": "40",
+            "nickname":"Sumomoshinqi",
+            "avatar":"7975723",
+            "text": "I think success has no rules, but you can learn a lot from failure. ",
+            "original_pic": "",
+            "created_at": "1404708544"
+        },
+        {
+            "id": "39",
+            "nickname":"Colin L. Powell",
+            "avatar":"3",
+            "text": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
+            "original_pic": "",
+            "created_at": "1404708455"
+        },
+        {
+            "id": "38",
+            "nickname":"Balzac",
+            "avatar":"5",
+            "text": "There is no such thing as a great talent without great will - power.",
+            "original_pic": "http://lorempixel.com/1000/700/nature/5/",
+            "created_at": "1404707590"
+        },
+        {
+            "id": "37",
+            "nickname":"Charles Chaplin",
+            "avatar":"7",
+            "text": "You have to believe in yourself. That's the secret of success.",
+            "original_pic": "",
+            "created_at": "1404707580"
+        },
+        {
+            "id": "36",
+            "nickname":"R.M. Nixon",
+            "avatar":"4",
+            "text": "Our destiny offers not the cup of despair, but the chalice of opportunity. So let us seize it, not in fear, but in gladness.",
+            "original_pic": "",
+            "created_at": "1404707197"
+        }
+    ]
+}
