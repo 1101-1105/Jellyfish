@@ -13,9 +13,9 @@ var settingView = {
         hiApp.showIndicator();
 
         var renderData = {
-            avatarUrl: 'http://lorempixel.com/68/68/people/7/',
-            nickName: 'HiApp',
-            points: '100'
+            avatarUrl: 'https://d13yacurqjgara.cloudfront.net/users/216043/screenshots/2027675/jellyfish_logo.jpg',
+            nickName: 'Jellyfish',
+            points: '200'
         };
 
         var output = appFunc.renderTpl(template, renderData);
