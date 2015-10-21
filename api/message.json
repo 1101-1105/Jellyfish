@@ -5,7 +5,7 @@
 
         {
             "date":"Sunday, Feb 9, 12:58",
-            "text": "Hi Buddy",
+            "text": "Hi buddy",
             "from": "sent"
         },
         {
@@ -21,7 +21,7 @@
             "from": "received"
         },
         {
-            "text": "Hey, Blue Ninja! Glad to see you ;)",
+            "text": "Hey! Glad to see you ;)",
             "from": "sent"
         },
         {
@@ -59,7 +59,7 @@
             "from": "sent"
         },
         {
-            "text": "Hey, look, cutest kitten ever!",
+            "text": "Hey, look!",
             "from": "sent"
         },
         {
