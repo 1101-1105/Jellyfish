@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 
     if (response.err_code === 0) {
         response.data = comment.get({
-            
+            id: req.query.id
         });
     }
     res.status(status)
@@ -21,23 +21,30 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+    var tweetId = req.query.id,
+        text = req.query.text;
 
     var status = 200,
         response = {
             'err_code': 0,
             'err_msg': 'success'
         };
+    
+    if (typeof(text) !== 'string' || text.length <= 0) {
+        status = 400;
+        response.err_code = 1;
+        response.err_msg = 'Incoreect text.(' + req.query.text + ')';
+    }
 
     if (response.err_code === 0) {
-        var comment = {
-            'id': '',
-            'nickname':'Nicole Sobon',
-            'avatar':'5',
-            'text': text,
-            'original_pic': pic,
-            'created_at': String(Date.now()/1000)
+        var newComment = {
+            "tweet_id": tweetId,
+            "avatar":"8716109",
+            "name":"Someone",
+            "text": text,
+            "time": String(Date.now()/1000)
         };
-        commnet.add(comment);
+        comment.add(newComment);
     }
     res.status(status)
         .json(response);

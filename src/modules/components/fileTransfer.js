@@ -3,7 +3,7 @@ var ft;
 var fileTransfer = {
     startUpload: function(fileUrl){
 
-        var uploadServer = 'http://localhost:3001/';
+        var uploadServer = 'http://localhost:3001/upload';
 
         //Upload progress
         var text = '<div id="progress" class="progress"><span class="progress-bar"></span></div>';

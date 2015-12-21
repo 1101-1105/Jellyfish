@@ -17,7 +17,7 @@ var tweetModule = {
         this.getTweet();
 
         // init comment module
-        commentModule.init();
+        commentModule.init(query);
     },
     getTweet: function(){
         var $this = $$('#homeView .home-timeline .card[data-id="'+ id +'"]');

@@ -3,25 +3,24 @@ var appFunc = require('../utils/appFunc'),
     template = require('./comment.tpl.html'),
     popupTpl = require('./commentPopup.tpl.html');
 
+var tweetId;
+
 var commentModule = {
-    init: function(){
+    init: function(query){
+        tweetId = query.id;
         this.getComments();
     },
     getComments: function(){
-        service.getComments(function(c){
-            var random = Math.floor(Math.random()*2);
-            if(!random) c = null;
-
-            setTimeout(function(){
-                var renderData = {
-                    comments: c,
-                    rtime: function(){
-                        return appFunc.timeFormat(this.time);
-                    }
-                };
-                var output = appFunc.renderTpl(template, renderData);
-                $$('#commentContent').html(output);
-            },1500);
+        service.getComments(tweetId, function(response){
+            if (response.err_code !== 0) return;
+            var renderData = {
+                comments: response.data,
+                rtime: function(){
+                    return appFunc.timeFormat(this.time);
+                }
+            };
+            var output = appFunc.renderTpl(template, renderData);
+            $$('#commentContent').html(output);
         });
     },
     commentPopup: function(params){
@@ -58,12 +57,21 @@ var commentModule = {
 
         Jellyfish.showPreloader(i18n.comment.commenting);
 
-        setTimeout(function(){
-            Jellyfish.hidePreloader();
-            Jellyfish.closeModal('.comment-popup');
+        var comment = {
+            'id': tweetId,
+            'text': text
+        };
 
-            //Refresh comment content
-        },1500);
+        service.sendComment(comment, function(response) { 
+            if (response.err_code !== 0) {
+                Jellyfish.alert(i18n.index.err_sending_failed);
+            } else {
+                Jellyfish.hidePreloader();
+                Jellyfish.closeModal('.comment-popup');
+                commentModule.getComments();
+            }
+        });
+
     },
     createActionSheet: function(){
         var replyName = $$(this).find('.comment-detail .name').html();
