@@ -72,7 +72,7 @@
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0585abb4a3a9e2ae2b9c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a44b597cebdc5d209ac2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -15996,8 +15996,11 @@
 	    infiniteTimeline: function(){
 	        var $this = $$(this);
 	
+	        var tweetCount = $$('#homeView').find('.home-timeline .card').length;
+	        var offset = tweetCount + 1;
+	
 	        Jellyfish.showIndicator();
-	        service.infiniteTimeline(function(tl){
+	        service.infiniteTimeline(offset, function(tl){
 	            var status = $this.data('scrollLoading');
 	            if (status === 'loading') return;
 	
@@ -16161,11 +16164,11 @@
 	            callback(res.data);
 	        });
 	    },
-	    infiniteTimeline: function(callback){
+	    infiniteTimeline: function(offset, callback){
 	        xhr.simpleCall({
 	            func:'timeline',
 	            query: {
-	              offset: 0,
+	              offset: offset,
 	              count: timeline_count
 	            }
 	        },function(res){
@@ -16200,7 +16203,7 @@
 	        var func = options.func || '';
 	
 	        // var apiServer = 'api/' + func + '.json' +
-	        var apiServer = 'http://localhost:3001/' + func +
+	        var apiServer = 'http://10.141.249.176:3001/' + func +
 	            (appFunc.isEmpty(query) ? '' : '?');
 	
 	        var name;
