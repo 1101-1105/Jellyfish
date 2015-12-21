@@ -1,21 +1,19 @@
 var jsonfile = require('jsonfile');
 var path = require('path');
-var file = path.join(__dirname, '../../data/timeline.json');
+var file = path.join(__dirname, '../../data/contacts.json');
 
-var timeline = {
+var contacts = {
     get: function(options) {
         var data = jsonfile.readFileSync(file);
-        data = data.splice(options.offset, options.count);
         return data;
     },
-    add: function(tweet) {
+    add: function(contact) {
         jsonfile.readFile(file, function(err, data){
             if (err) {
                 console.log(err);
                 return;
             }
-            tweet.id = String(Number(data[0].id) + 1);
-            data = [tweet].concat(data);
+            data = [contact].concat(data);
             jsonfile.writeFile(file, data, function(err) {
                 console.log(err);
             });
@@ -24,4 +22,4 @@ var timeline = {
 
 };
 
-module.exports = timeline;
+module.exports = contacts;

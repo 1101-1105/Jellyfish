@@ -22,7 +22,10 @@ router.get('/', function(req, res, next) {
         response.err_msg = 'Incorrect count. (' + req.query.count + ')';
     }
     if (response.err_code === 0) {
-        response.data = timeline.get(offset, count);
+        response.data = timeline.get({
+            offset: offset,
+            count: count
+        });
     }
     res.status(status)
         .json(response);

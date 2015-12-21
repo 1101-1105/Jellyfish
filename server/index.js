@@ -1,5 +1,7 @@
 var express = require('express');
 var timelineRouter = require('./modules/timeline/router');
+var commentRouter = require('./modules/comment/router');
+var contactsRouter = require('./modules/contacts/router');
 var app = express();
 
 // This allows cross origin XMLHttpRequest
@@ -9,10 +11,12 @@ app.use(function(req, res, next) {
 });
 
 app.use('/timeline', timelineRouter);
+app.use('/comments', commentRouter);
+app.use('/contacts', contactsRouter);
 
 var server = app.listen(3001, function() {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Jellyfish server listening at http://%s:%s', host, port);
 });

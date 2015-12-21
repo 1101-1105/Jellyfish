@@ -1,5 +1,5 @@
 var express = require('express');
-var comment = require('./comment');
+var contacts = require('./contacts');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -8,12 +8,11 @@ router.get('/', function(req, res, next) {
             'err_code': 0,
             'err_msg': '',
             'data': null
-        };
+        },
+        options = {};
 
     if (response.err_code === 0) {
-        response.data = comment.get({
-            
-        });
+        response.data = contacts.get(options);
     }
     res.status(status)
         .json(response);
@@ -29,15 +28,13 @@ router.post('/', function(req, res, next) {
         };
 
     if (response.err_code === 0) {
-        var comment = {
-            'id': '',
-            'nickname':'Nicole Sobon',
-            'avatar':'5',
-            'text': text,
-            'original_pic': pic,
-            'created_at': String(Date.now()/1000)
+        var contact = {
+            "nickname":"Blackend",
+            "location":"Shanghai",
+            "avatar":"15196757",
+            "header":"B"
         };
-        commnet.add(comment);
+        contacts.add(contact);
     }
     res.status(status)
         .json(response);
