@@ -1,23 +1,37 @@
 var xhr = require('../utils/xhr');
 
+var timeline_count = 6;
+
 module.exports = {
     getTimeline: function(callback){
         xhr.simpleCall({
-            func:'timeline'
+            func:'timeline',
+            query: {
+              offset: 0,
+              count: timeline_count
+            }
         },function(res){
             callback(res.data);
         });
     },
     refreshTimeline: function(callback){
         xhr.simpleCall({
-            func:'refresh_timeline'
+            func:'timeline',
+            query: {
+              offset: 0,
+              count: timeline_count
+            }
         },function(res){
             callback(res.data);
         });
     },
-    infiniteTimeline: function(callback){
+    infiniteTimeline: function(offset, callback){
         xhr.simpleCall({
-            func:'more_timeline'
+            func:'timeline',
+            query: {
+              offset: offset,
+              count: timeline_count
+            }
         },function(res){
             callback(res.data);
         });

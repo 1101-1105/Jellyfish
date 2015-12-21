@@ -72,7 +72,7 @@
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e0ca628d091a3d10e09d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0585abb4a3a9e2ae2b9c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -15907,10 +15907,10 @@
 	
 	        var keys = key.split('.');
 	
-	        var value;
+	        var value = null;
 	        for (var idx = 0, size = keys.length; idx < size; idx++)
 	        {
-	            if (value != null)
+	            if (value !== null)
 	            {
 	                value = value[keys[idx]];
 	            } else {
@@ -15921,6 +15921,7 @@
 	        return value;
 	    }
 	};
+
 
 /***/ },
 /* 11 */
@@ -16135,29 +16136,44 @@
 
 	var xhr = __webpack_require__(15);
 	
+	var timeline_count = 6;
+	
 	module.exports = {
 	    getTimeline: function(callback){
 	        xhr.simpleCall({
-	            func:'timeline'
+	            func:'timeline',
+	            query: {
+	              offset: 0,
+	              count: timeline_count
+	            }
 	        },function(res){
 	            callback(res.data);
 	        });
 	    },
 	    refreshTimeline: function(callback){
 	        xhr.simpleCall({
-	            func:'refresh_timeline'
+	            func:'timeline',
+	            query: {
+	              offset: 0,
+	              count: timeline_count
+	            }
 	        },function(res){
 	            callback(res.data);
 	        });
 	    },
 	    infiniteTimeline: function(callback){
 	        xhr.simpleCall({
-	            func:'more_timeline'
+	            func:'timeline',
+	            query: {
+	              offset: 0,
+	              count: timeline_count
+	            }
 	        },function(res){
 	            callback(res.data);
 	        });
 	    }
 	};
+
 
 /***/ },
 /* 15 */
@@ -16183,7 +16199,8 @@
 	        var query = options.query || {};
 	        var func = options.func || '';
 	
-	        var apiServer = 'api/' + func + '.json' +
+	        // var apiServer = 'api/' + func + '.json' +
+	        var apiServer = 'http://localhost:3001/' + func +
 	            (appFunc.isEmpty(query) ? '' : '?');
 	
 	        var name;

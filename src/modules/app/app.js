@@ -41,10 +41,10 @@ module.exports = {
 
         var keys = key.split('.');
 
-        var value;
+        var value = null;
         for (var idx = 0, size = keys.length; idx < size; idx++)
         {
-            if (value != null)
+            if (value !== null)
             {
                 value = value[keys[idx]];
             } else {

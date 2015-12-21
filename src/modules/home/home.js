@@ -61,8 +61,11 @@ var home = {
     infiniteTimeline: function(){
         var $this = $$(this);
 
+        var tweetCount = $$('#homeView').find('.home-timeline .card').length;
+        var offset = tweetCount + 1;
+
         Jellyfish.showIndicator();
-        service.infiniteTimeline(function(tl){
+        service.infiniteTimeline(offset, function(tl){
             var status = $this.data('scrollLoading');
             if (status === 'loading') return;
 
