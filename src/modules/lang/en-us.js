@@ -26,7 +26,8 @@ module.exports = {
         sen_tweet: 'New Tweet',
         send_placeholder: 'What is new with you.',
         sending:'Submitting...',
-        err_text_too_short:'Ah,Content is too short'
+        err_text_too_short:'Ah,Content is too short',
+        err_sending_failed: 'Sending failed!'
     },
     setting: {
         feed_back: 'Feedback',

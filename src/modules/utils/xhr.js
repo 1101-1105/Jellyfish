@@ -70,11 +70,10 @@ module.exports = {
                 var codeLevel = that.search(data.err_code,codes);
 
                 if(!codeLevel){
-
-                    (typeof(callback) === 'function') ? callback(data) : '';
-
+                    if(typeof(callback) === 'function') {
+                        callback(data);
+                    }
                 }else{
-
                     Jellyfish.alert(codeLevel.message,function(){
                         Jellyfish.hideIndicator();
                         Jellyfish.hidePreloader();

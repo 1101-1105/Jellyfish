@@ -17,7 +17,7 @@ var timeline = {
             tweet.id = String(Number(data[0].id) + 1);
             data = [tweet].concat(data);
             jsonfile.writeFile(file, data, function(err) {
-                console.log(err);
+                if (err) console.log(err);
             });
         });
     }
