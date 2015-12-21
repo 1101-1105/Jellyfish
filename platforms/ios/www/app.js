@@ -16462,7 +16462,7 @@
 	var fileTransfer = {
 	    startUpload: function(fileUrl){
 	
-	        var uploadServer = 'http://up.qiniu.com/';
+	        var uploadServer = 'http://localhost:3001/';
 	
 	        //Upload progress
 	        var text = '<div id="progress" class="progress"><span class="progress-bar"></span></div>';

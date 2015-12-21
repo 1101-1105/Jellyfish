@@ -19,7 +19,7 @@ module.exports = {
         var func = options.func || '';
 
         // var apiServer = 'api/' + func + '.json' +
-        var apiServer = 'http://10.141.249.176:3001/' + func +
+        var apiServer = 'http://localhost:3001/' + func +
             (appFunc.isEmpty(query) ? '' : '?');
 
         var name;

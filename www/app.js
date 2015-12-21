@@ -72,7 +72,7 @@
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a44b597cebdc5d209ac2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "792085dc7fc08a4ff609"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -16203,7 +16203,7 @@
 	        var func = options.func || '';
 	
 	        // var apiServer = 'api/' + func + '.json' +
-	        var apiServer = 'http://10.141.249.176:3001/' + func +
+	        var apiServer = 'http://localhost:3001/' + func +
 	            (appFunc.isEmpty(query) ? '' : '?');
 	
 	        var name;
@@ -16254,11 +16254,10 @@
 	                var codeLevel = that.search(data.err_code,codes);
 	
 	                if(!codeLevel){
-	
-	                    (typeof(callback) === 'function') ? callback(data) : '';
-	
+	                    if(typeof(callback) === 'function') {
+	                        callback(data);
+	                    }
 	                }else{
-	
 	                    Jellyfish.alert(codeLevel.message,function(){
 	                        Jellyfish.hideIndicator();
 	                        Jellyfish.hidePreloader();
@@ -16310,7 +16309,8 @@
 	var appFunc = __webpack_require__(7),
 	    template = __webpack_require__(20),
 	    camera = __webpack_require__(21),
-	    geo = __webpack_require__(23);
+	    geo = __webpack_require__(23),
+	    xhr = __webpack_require__(15);
 	
 	var inputModule = {
 	    openSendPopup: function(){
@@ -16354,15 +16354,25 @@
 	            if(appFunc.isPhonegap()) {
 	                camera.startUpload(imgSrc);
 	            }
-	        }else {
-	            Jellyfish.showPreloader(i18n.index.sending);
+	        }
 	
-	            setTimeout(function () {
+	        Jellyfish.showPreloader(i18n.index.sending);
+	
+	        xhr.simpleCall({
+	            func: 'timeline',
+	            method: 'POST',
+	            query: {
+	                text: text,
+	                pic: ''
+	            }
+	        }, function(response) {
+	            if (response.err_code !== 0) {
+	                Jellyfish.alert(i18n.index.err_sending_failed);
+	            } else {
 	                Jellyfish.hidePreloader();
 	                Jellyfish.closeModal('.send-popup');
-	                //Refresh Timeline
-	            }, 1300);
-	        }
+	            }
+	        });
 	    }
 	};
 	
@@ -16462,7 +16472,7 @@
 	var fileTransfer = {
 	    startUpload: function(fileUrl){
 	
-	        var uploadServer = 'http://up.qiniu.com/';
+	        var uploadServer = 'http://localhost:3001/';
 	
 	        //Upload progress
 	        var text = '<div id="progress" class="progress"><span class="progress-bar"></span></div>';
