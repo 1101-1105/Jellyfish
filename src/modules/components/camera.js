@@ -58,8 +58,8 @@ var camera = {
         navigator.camera.cleanup();
     },
 
-    startUpload: function(url){
-        fileTransfer.startUpload(url);
+    startUpload: function(url, callback){
+        fileTransfer.startUpload(url, callback);
     }
 };
 

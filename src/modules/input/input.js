@@ -46,27 +46,28 @@ var inputModule = {
 
         if(imgSrc !== 'http://placeholder'){
             if(appFunc.isPhonegap()) {
-                camera.startUpload(imgSrc);
+                camera.startUpload(imgSrc, function(imgUrl) {
+                    $$('#messageText').val(imgUrl);
+                });
             }
+        } else {
+            Jellyfish.showPreloader(i18n.index.sending);
+            xhr.simpleCall({
+                func: 'timeline',
+                method: 'POST',
+                query: {
+                    text: text,
+                    pic: ''
+                }
+            }, function(response) {
+                if (response.err_code !== 0) {
+                    Jellyfish.alert(i18n.index.err_sending_failed);
+                } else {
+                    Jellyfish.hidePreloader();
+                    Jellyfish.closeModal('.send-popup');
+                }
+            });
         }
-
-        Jellyfish.showPreloader(i18n.index.sending);
-
-        xhr.simpleCall({
-            func: 'timeline',
-            method: 'POST',
-            query: {
-                text: text,
-                pic: ''
-            }
-        }, function(response) {
-            if (response.err_code !== 0) {
-                Jellyfish.alert(i18n.index.err_sending_failed);
-            } else {
-                Jellyfish.hidePreloader();
-                Jellyfish.closeModal('.send-popup');
-            }
-        });
     }
 };
 

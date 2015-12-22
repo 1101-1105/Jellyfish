@@ -1,8 +1,7 @@
 var ft;
-
+var callback;
 var fileTransfer = {
-    startUpload: function(fileUrl){
-
+    startUpload: function(fileUrl, fun){
         var uploadServer = 'http://localhost:3001/upload';
 
         //Upload progress
@@ -15,6 +14,8 @@ var fileTransfer = {
                 onClick: fileTransfer.abortUpload
             }]
         });
+
+        callback = fun;
 
         /* global FileUploadOptions */
         var options = new FileUploadOptions();
@@ -33,9 +34,24 @@ var fileTransfer = {
 
         navigator.camera.cleanup();
 
-        var response = r.response ? JSON.parse(r.response) : '';
+        // var response = r.response ? JSON.parse(r.response) : '';
+        // var response = JSON.parse(r);
+        // var response = r;
+        // var res_str = '';
+        // for (var key in response) {
+        //     res_str += key+ ': ' + response[key] + '|';
+        // }
+        // $$('#messageText').val(res_str);
+        // if (typeof(callback) === 'function') {
+            callback(r.response.data);
+        // }
+        // if (response.err_code === 0) {
+        //     Jellyfish.alert(response.data);
+        // }
+        // else {
+        //     Jellyfish.alert(response.err_msg);
+        // }
 
-        Jellyfish.alert(response);
     },
 
     uploadFail: function (error) {
