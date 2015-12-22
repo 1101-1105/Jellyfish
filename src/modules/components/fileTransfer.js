@@ -31,27 +31,9 @@ var fileTransfer = {
 
     uploadSuccess: function (r) {
         Jellyfish.closeModal('.modal');
-
         navigator.camera.cleanup();
-
-        // var response = r.response ? JSON.parse(r.response) : '';
-        // var response = JSON.parse(r);
-        // var response = r;
-        // var res_str = '';
-        // for (var key in response) {
-        //     res_str += key+ ': ' + response[key] + '|';
-        // }
-        // $$('#messageText').val(res_str);
-        // if (typeof(callback) === 'function') {
-            callback(r.response.data);
-        // }
-        // if (response.err_code === 0) {
-        //     Jellyfish.alert(response.data);
-        // }
-        // else {
-        //     Jellyfish.alert(response.err_msg);
-        // }
-
+        var response = JSON.parse(r.response);
+        callback(response.data);
     },
 
     uploadFail: function (error) {

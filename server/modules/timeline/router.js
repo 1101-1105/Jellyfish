@@ -46,6 +46,9 @@ router.post('/', function(req, res, next) {
         response.err_code = 1;
         response.err_msg = "Incorrect tweet text. (" + req.query.text + ")";
     }
+    if (pic.length > 0 && pic.startsWith('/upload')) {
+        pic = 'http://localhost:3001'+pic;
+    }
     if (response.err_code === 0) {
         var tweet = {
             'id': '',

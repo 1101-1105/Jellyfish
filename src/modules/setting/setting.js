@@ -25,7 +25,7 @@ var settingView = {
     },
     logOut: function(){
         Jellyfish.confirm(i18n.setting.confirm_logout,function(){
-            //mainView.router.loadPage('page/login.html');
+            homeF7View.router.loadPage('page/login.html');
             //Jellyfish.showTab('#ourView');
         });
     },

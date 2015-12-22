@@ -41,6 +41,7 @@ app.post('/upload', function(req, res, next) {
         };
         fs.renameSync(tmp_path, target_path, function(err) {
             console.log('callback');
+
             if(err) {
                 console.log(err.stack);
                 status = 500;
@@ -50,7 +51,7 @@ app.post('/upload', function(req, res, next) {
                 console.log('file uploaded to '+target_path);
             }
         });
-        response.data = '/upload' + fileName;
+        response.data = '/upload/' + fileName;
         console.log(response);
         res.status(status).json(response);
     });
