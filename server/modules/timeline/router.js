@@ -52,8 +52,8 @@ router.post('/', function(req, res, next) {
     if (response.err_code === 0) {
         var tweet = {
             'id': '',
-            'nickname':'Nicole Sobon',
-            'avatar':'5',
+            'nickname':'Xicky Gu',
+            'avatar':'5567116',
             'text': text,
             'original_pic': pic,
             'created_at': String(Date.now()/1000)

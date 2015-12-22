@@ -102,6 +102,9 @@ var app = {
                     back: i18n.global.back,
                     done: i18n.global.done,
                     switchLanguage: i18n.global.switch_language
+                },
+                'page:login': {
+                    // back: i18n.global.done
                 }
             }
         });

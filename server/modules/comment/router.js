@@ -39,8 +39,8 @@ router.post('/', function(req, res, next) {
     if (response.err_code === 0) {
         var newComment = {
             "tweet_id": tweetId,
-            "avatar":"8716109",
-            "name":"Someone",
+            "avatar":"5567116",
+            "name":"Xicky",
             "text": text,
             "time": String(Date.now()/1000)
         };

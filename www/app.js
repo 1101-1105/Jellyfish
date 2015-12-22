@@ -72,7 +72,7 @@
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "237f01be0f1a7f95e025"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "03b621804b9d94cc72dd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -639,13 +639,13 @@
 	
 	        switch (lang){
 	            case 'en-us':
-	                __webpack_require__.e/* require */(1, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(47)]; (function(lang){
+	                __webpack_require__.e/* require */(1, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(48)]; (function(lang){
 	                    window.i18n = lang;
 	                    app.initFramework7();
 	                }.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));});
 	                break;
 	            case 'zh-cn':
-	                __webpack_require__.e/* require */(2, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(48)]; (function(lang){
+	                __webpack_require__.e/* require */(2, function(__webpack_require__) { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(49)]; (function(lang){
 	                    window.i18n = lang;
 	                    app.initFramework7();
 	                }.apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));});
@@ -707,12 +707,18 @@
 	                    back: i18n.global.back,
 	                    done: i18n.global.done,
 	                    switchLanguage: i18n.global.switch_language
+	                },
+	                'page:login': {
+	                    // back: i18n.global.done
 	                }
 	            }
 	        });
 	
 	        window.homeF7View = Jellyfish.addView('#homeView', {
 	            dynamicNavbar: true
+	        });
+	        window.homeF7View = Jellyfish.addView('#loginView', {
+	            dynamicNavbar: false
 	        });
 	
 	        Jellyfish.addView('#contactView', {
@@ -15811,7 +15817,8 @@
 	    feedbackModule = __webpack_require__(38),
 	    aboutModule = __webpack_require__(39),
 	    languageModule = __webpack_require__(41),
-	    messageModule = __webpack_require__(43);
+	    messageModule = __webpack_require__(43),
+	    loginModule = __webpack_require__(47);
 	
 	module.exports = {
 	    init: function() {
@@ -15855,6 +15862,9 @@
 	                break;
 	            case 'language':
 	                languageModule.init();
+	                break;
+	            case 'login':
+	                loginModule.init();
 	                break;
 	        }
 	    }
@@ -16750,7 +16760,7 @@
 	    },
 	    logOut: function(){
 	        Jellyfish.confirm(i18n.setting.confirm_logout,function(){
-	            homeF7View.router.loadPage('page/login.html');
+	            settingView.router.loadPage('page/login.html');
 	            //Jellyfish.showTab('#ourView');
 	        });
 	    },
@@ -17238,6 +17248,40 @@
 /***/ function(module, exports) {
 
 	module.exports = "{{#each message}}\n{{#if date}}\n<div class=\"messages-date\">{{date}}</div>\n{{/if}}\n{{#if image}}\n<div class=\"message message-{{from}} message-pic \">\n    <div class=\"message-text\"><img src=\"{{text}}\"/></div>\n</div>\n{{else}}\n<div class=\"message message-{{from}} message-last\">\n    <div class=\"message-text\">{{text}}</div>\n</div>\n{{/if}}\n{{/each}}";
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// require('./login.less');
+	
+	var appFunc = __webpack_require__(7);
+	
+	var loginModule = {
+	    init: function() {
+	        console.log('login.init()');
+	        appFunc.hideToolbar();
+	    },
+	    fuck: function() {
+	
+	    },
+	    login: function() {
+	
+	    },
+	    bindEvents: function() {
+	        var bindings = [{
+	            element: '',
+	            selector: '',
+	            event: 'click',
+	            handler: loginModule.login
+	        }];
+	
+	        // appFunc.bindEvents(bindings);
+	    }
+	};
+	
+	module.exports = loginModule;
+
 
 /***/ }
 /******/ ]);
