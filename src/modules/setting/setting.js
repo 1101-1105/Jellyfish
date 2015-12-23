@@ -63,9 +63,5 @@ var settingView = {
         appFunc.bindEvents(bindings);
     }
 };
-window.loginJump = function() {
-     $$("#loginJump").click();
-};
-
 
 module.exports = settingView;

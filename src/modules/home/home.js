@@ -146,10 +146,18 @@ var home = {
     },
     openItemPage: function(e){
         if(e.target.nodeName === 'A' || e.target.nodeName === 'IMG'){
-            return false;
+            // return false;
         }
         var itemId = $$(this).data('id');
         homeF7View.router.loadPage('page/tweet.html?id=' + itemId);
+    },
+    likeItem: function(e) {
+        var likeBtn = $$(this);
+        var id = $$(this).data('id');
+        var alreadyLiked = likeBtn.hasClass('liked');
+        service.likeItem(id, !alreadyLiked, function(d) {
+            likeBtn.toggleClass('liked');
+        });
     },
     bindEvent: function(){
 
@@ -175,9 +183,19 @@ var home = {
             handler: inputModule.openSendPopup
         },{
             element: '#homeView',
-            selector: '.home-timeline .ks-facebook-card',
+            selector: '.home-timeline .ks-facebook-card .card-content-text',
             event: 'click',
             handler: this.openItemPage
+        },{
+            element: '#homeView',
+            selector: '.home-timeline .comment',
+            event: 'click',
+            handler: this.openItemPage
+        },{
+            element: '#homeView',
+            selector: '.home-timeline .like',
+            event: 'click',
+            handler: this.likeItem
         },{
             element: '#homeView',
             selector:'div.card-content .item-image>img',

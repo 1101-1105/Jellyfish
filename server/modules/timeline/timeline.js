@@ -20,6 +20,23 @@ var timeline = {
                 if (err) console.log(err);
             });
         });
+    },
+    like: function(options) {
+        jsonfile.readFile(file, function(err, data) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            for (var i = 0; i < data.length; i++) {
+                if (Number(data[i].id) === options.id) {
+                    data[i].liked = options.like;
+                    break;
+                }
+            }
+            jsonfile.writeFile(file, data, function(err) {
+                if (err) console.log(err);
+            });
+        });
     }
 
 };

@@ -65,4 +65,18 @@ router.post('/', function(req, res, next) {
     return next();
 });
 
+router.get('/like', function(req, res, next) {
+    var id = Number(req.query.id),
+        like = req.query.like === 'true';
+    timeline.like({
+        id: id,
+        like: like
+    });
+    res.status(200).json({
+        err_code: 0,
+        err_msg: ''
+    });
+    return next();
+});
+
 module.exports = router;

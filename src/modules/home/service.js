@@ -35,5 +35,16 @@ module.exports = {
         },function(res){
             callback(res.data);
         });
+    },
+    likeItem: function(id, like, callback) {
+        xhr.simpleCall({
+            func: 'timeline/like',
+            query: {
+                id: id,
+                like: like
+            }
+        }, function(res) {
+            callback(res.data);
+        });
     }
 };
