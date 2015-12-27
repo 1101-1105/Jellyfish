@@ -47,18 +47,6 @@ Go to the directory where you maintain your source code, and run a command such 
 $ cordova create Jellyfish com.Jellyfish.Jellyfish Jellyfish
 ```
 
-### Check out source code
-
-Because the PhoneGap app directory should not already exist, so check out the Jellyfish source code in this step.
-
-```
-$ cd Jellyfish  
-$ git init   
-$ git remote add origin git@github.com:BelinChung/Jellyfish.git  
-$ git pull origin master  
-$ git reset --hard origin/master  
-```
-
 ### Add Platforms
 
 Before you can build the project, you need to specify a set of target platforms.
