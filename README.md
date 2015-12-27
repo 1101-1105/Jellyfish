@@ -1,15 +1,7 @@
 Jellyfish
 =====
 
-A simple and interesting Framework7 hybrid app.With PhoneGap you can easily convert it to native iOS app.
-
-## Build Tools
-
-Jellyfish use different build tools to build the same project, Hope it will helps you select a suitable build tool.
-
-* `gulp & webpack` at origin/master
-* `fis3 & mod.js` at [origin/fis3](https://github.com/BelinChung/Jellyfish/tree/fis3)
-* `[DEPRECATED] grunt & requireJS` at [origin/grunt](https://github.com/BelinChung/Jellyfish/tree/grunt)
+A simple Framework7 hybrid app. With PhoneGap you can easily convert it to native iOS app.
 
 ## Requirements
 
