@@ -114,16 +114,3 @@ $ gulp build
 ```
 
 The result is available in `www/` folder.
-
-## Demo
-
-[http://hi.dearb.me/]
-
-[![App Store](http://dearb.u.qiniudn.com/appstore-button.png)](https://itunes.apple.com/us/app/hi-liao-gao-xiao-shu-dong/id917320045?mt=8)
-
-## License
-
-Copyright (c) 2014-2015 Belin Chung. MIT Licensed, see [LICENSE] for details.
-
-[http://hi.dearb.me/]: http://hi.dearb.me/
-[LICENSE]:https://github.com/BelinChung/Jellyfish/blob/master/LICENSE.md
